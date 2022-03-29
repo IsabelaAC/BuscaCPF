@@ -1,0 +1,17 @@
+service: capacita
+
+functions:
+  buscaCPF:
+    handler: services/capacita/routes.buscaCPF 
+    environment:
+      client: capacita
+      service: buscaCPF
+    events:
+      - http:
+          path: buscaCPF
+          method: get
+  
+customDomain:
+  domainName: 'serverless.portosda.com'
+  basePath: 'sda-${self:provider.stage}'
+  stage: ${self:provider.stage}
